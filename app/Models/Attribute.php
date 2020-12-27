@@ -9,6 +9,8 @@ class Attribute extends Model
 {
     use HasFactory;
 
+    protected $fillable=['product_id','name','label','value','price'];
+
     public function product()
     {
         return $this->belongsTo('App\Models\Product');
