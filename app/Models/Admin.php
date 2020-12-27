@@ -12,7 +12,8 @@ class Admin extends User
 {
     use HasFactory, Notifiable;
 
-    protected $grauds="admins";
+    protected $guards="admin";
+
     protected $fillable = [
         'name',
         'email',
