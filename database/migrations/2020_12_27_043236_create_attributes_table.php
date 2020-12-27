@@ -20,7 +20,7 @@ class CreateAttributesTable extends Migration
             $table->string('name');
             $table->string('label');
             $table->string('value');
-            $table->decimal('price')->nullable();
+            $table->decimal('price')->default(0);
             $table->timestamps();
         });
     }

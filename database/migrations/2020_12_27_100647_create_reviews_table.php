@@ -17,6 +17,8 @@ class CreateReviewsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
             $table->text('review')->nullable();
             $table->enum('rate',[1,2,3,4,5])->nullable();
             $table->timestamps();
