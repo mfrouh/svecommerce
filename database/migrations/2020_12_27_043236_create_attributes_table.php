@@ -15,6 +15,12 @@ class CreateAttributesTable extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('name');
+            $table->string('label');
+            $table->string('value');
+            $table->decimal('price')->nullable();
             $table->timestamps();
         });
     }
