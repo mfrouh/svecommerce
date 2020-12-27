@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+       return view('Backend.product.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('Backend.product.create');
     }
 
     /**
@@ -36,7 +36,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required',
+            'description'=>'required|min:50',
+            'price'=>'required',
+            'status'=>'required|in:active,inactive',
+            'sku'=>'required',
+        ]);
+        Product::create($this->validated());
+        return back()->with('success','تم انشاء المنتج بنجاح');
     }
 
     /**
@@ -47,7 +55,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('Backend.product.show',compact('product'));
     }
 
     /**
@@ -58,7 +66,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('Backend.product.edit',compact('product'));
     }
 
     /**
@@ -70,7 +78,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required',
+            'description'=>'required|min:50',
+            'price'=>'required',
+            'status'=>'required|in:active,inactive',
+            'sku'=>'required',
+        ]);
+        $product->update($this->validated());
+        return back()->with('success','تم تعديل المنتج بنجاح');
     }
 
     /**
@@ -81,6 +97,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $this->delete();
+        return back()->with('success','تم حذف المنتج بنجاح');
     }
 }

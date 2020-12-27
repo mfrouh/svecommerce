@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('Backend.category.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('Backend.category.create');
     }
 
     /**
@@ -36,7 +36,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>"required|unique:categories",
+            'status'=>'nullable|in:active,inactive',
+            'image'=>'image|nullable',
+        ]);
+        Category::create($this->validated());
+        return back()->with('success','تم انشاء القسم بنجاح');
     }
 
     /**
@@ -47,7 +53,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('Backend.category.show',compact('category'));
     }
 
     /**
@@ -58,7 +64,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('Backend.category.edit',compact('category'));
     }
 
     /**
@@ -70,7 +76,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $this->validate($request,[
+            'name'=>"required|unique:categories,name,".$category->id,
+            'status'=>'nullable|in:active,inactive',
+            'image'=>'image|nullable',
+        ]);
+        $category->update($this->validated());
+        return back()->with('success','تم تعديل القسم بنجاح');
     }
 
     /**
@@ -81,6 +93,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return back()->with('success','تم حذف القسم بنجاح');
     }
 }
