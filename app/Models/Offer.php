@@ -9,4 +9,10 @@ class Offer extends Model
 {
     use HasFactory;
 
+    protected $fillable=['product_id','type','value','message','start_offer','end_offer'];
+
+    public function product()
+    {
+        return $this->belongsTo('App\Models\Product');
+    }
 }

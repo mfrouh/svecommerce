@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends User
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable,HasRoles;
 
     protected $guards="admin";
 

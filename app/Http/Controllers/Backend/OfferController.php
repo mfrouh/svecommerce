@@ -1,0 +1,103 @@
+<?php
+
+namespace App\Http\Controllers\Backend;
+
+use App\Http\Controllers\Controller;
+use App\Models\Offer;
+use Illuminate\Http\Request;
+
+class OfferController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('Backend.offers.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('Backend.offers.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request,[
+            'product_id'=>'required|numeric',
+            'type'=>'required|in:fixed,variable',
+            'value'=>'required','message'=>'nullable',
+            'start_offer'=>'required|before_or_equal:end_offer',
+            'end_offer'=>'required|after_or_equal:start_offer'
+        ]);
+        Offer::create($this->validated());
+        return back()->with('success','تم انشاء العرض بنجاح');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Offer  $offer
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Offer $offer)
+    {
+        return view('Backend.offers.show',compact('offer'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Offer  $offer
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Offer $offer)
+    {
+        return view('Backend.offers.edit',compact('offer'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Offer  $offer
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Offer $offer)
+    {
+        $this->validate($request,[
+            'product_id'=>'required|numeric',
+            'type'=>'required|in:fixed,variable',
+            'value'=>'required','message'=>'nullable',
+            'start_offer'=>'required|before_or_equal:end_offer',
+            'end_offer'=>'required|after_or_equal:start_offer'
+        ]);
+        $offer->update($this->validated());
+        return back()->with('success','تم تعديل العرض بنجاح');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Offer  $offer
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Offer $offer)
+    {
+        $offer->delete();
+        return back()->with('success','تم حذف العرض بنجاح');
+    }
+}

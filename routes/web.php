@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('category', 'Backend\CategoryController');
+Route::resource('product', 'Backend\ProductController');
+Route::resource('offer', 'Backend\OfferController');
 
 Auth::routes();
 
