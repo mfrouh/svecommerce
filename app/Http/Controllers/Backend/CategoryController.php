@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -19,7 +20,8 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        return view('Backend.category.index');
+        $categories=Category::all();
+        return view('Backend.category.index',compact('categories'));
     }
 
     /**
@@ -45,7 +47,9 @@ class CategoryController extends Controller
             'status'=>'nullable|in:active,inactive',
             'image'=>'image|nullable',
         ]);
-        Category::create($this->validated());
+        $image=null;
+        if ($request->image) { $image=sortimage('storage/categories',$request->image);}
+        Category::create(['name'=>$request->name,'status'=>$request->status,'image'=>$image]);
         return back()->with('success','تم انشاء القسم بنجاح');
     }
 
@@ -85,7 +89,9 @@ class CategoryController extends Controller
             'status'=>'nullable|in:active,inactive',
             'image'=>'image|nullable',
         ]);
-        $category->update($this->validated());
+        $image=$category->image;
+        if ($request->image) { $image=sortimage('storage/categories',$request->image);}
+        $category->update(['name'=>$request->name,'status'=>$request->status,'image'=>$image]);
         return back()->with('success','تم تعديل القسم بنجاح');
     }
 
@@ -97,6 +103,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        Storage::delete(["storage/categories",$category->image]);
         $category->delete();
         return back()->with('success','تم حذف القسم بنجاح');
     }

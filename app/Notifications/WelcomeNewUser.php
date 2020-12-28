@@ -49,7 +49,7 @@ class WelcomeNewUser extends Notification
     public function toArray($notifiable)
     {
         return [
-           'content'=>'مرحبا بك محمد فروح في موقعنا',
+           'content'=>"مرحبا بك {{$this->user->name}} في موقعنا",
         ];
     }
 }

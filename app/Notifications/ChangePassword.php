@@ -49,7 +49,7 @@ class ChangePassword extends Notification
     public function toArray($notifiable)
     {
         return [
-            'content'=>'مرحبا تم تغيير كلمة السر بنجاح',
+            'content'=>'تم تغيير كلمة السر بنجاح',
         ];
     }
 }

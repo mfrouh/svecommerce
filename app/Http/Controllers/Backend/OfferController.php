@@ -43,7 +43,7 @@ class OfferController extends Controller
             'start_offer'=>'required|before_or_equal:end_offer',
             'end_offer'=>'required|after_or_equal:start_offer'
         ]);
-        Offer::create($this->validated());
+        Offer::create($request->all());
         return back()->with('success','تم انشاء العرض بنجاح');
     }
 
@@ -85,7 +85,7 @@ class OfferController extends Controller
             'start_offer'=>'required|before_or_equal:end_offer',
             'end_offer'=>'required|after_or_equal:start_offer'
         ]);
-        $offer->update($this->validated());
+        $offer->update($request->all());
         return back()->with('success','تم تعديل العرض بنجاح');
     }
 

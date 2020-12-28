@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,7 +17,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-       return view('Backend.product.index');
+       $products=Product::all();
+       return view('Backend.product.index',compact('products'));
     }
 
     /**
@@ -25,7 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('Backend.product.create');
+        $categories=Category::all();
+        return view('Backend.product.create',compact('categories'));
     }
 
     /**
@@ -39,11 +43,20 @@ class ProductController extends Controller
         $this->validate($request,[
             'name'=>'required',
             'description'=>'required|min:50',
-            'price'=>'required',
+            'price'=>'required|numeric',
             'status'=>'required|in:active,inactive',
             'sku'=>'required',
+            'tags'=>'required'
         ]);
-        Product::create($this->validated());
+        $product= Product::create($request->all());
+        $tags=explode(',',$request->tags);
+        $Ttags=array();
+        foreach ($tags as $key => $tag) {
+            $Ftag=Tag::where('name',$tag)->firstorcreate(['name'=>$tag]);
+            $Ftag->id;
+            $Ttags[]= $Ftag->id;
+        }
+        $product->tags()->sync($Ttags);
         return back()->with('success','تم انشاء المنتج بنجاح');
     }
 
@@ -66,7 +79,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('Backend.product.edit',compact('product'));
+        $categories=Category::all();
+        return view('Backend.product.edit',compact('product','categories'));
     }
 
     /**
@@ -81,11 +95,20 @@ class ProductController extends Controller
         $this->validate($request,[
             'name'=>'required',
             'description'=>'required|min:50',
-            'price'=>'required',
+            'price'=>'required|numeric',
             'status'=>'required|in:active,inactive',
             'sku'=>'required',
+            'tags'=>'required',
         ]);
-        $product->update($this->validated());
+        $product->update($request->all());
+        $tags=explode(',',$request->tags);
+        $Ttags=array();
+        foreach ($tags as $key => $tag) {
+            $Ftag=Tag::where('name',$tag)->firstorcreate(['name'=>$tag]);
+            $Ftag->id;
+            $Ttags[]= $Ftag->id;
+        }
+        $product->tags()->sync($Ttags);
         return back()->with('success','تم تعديل المنتج بنجاح');
     }
 
@@ -97,7 +120,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $this->delete();
+        $product->delete();
         return back()->with('success','تم حذف المنتج بنجاح');
     }
 }

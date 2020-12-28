@@ -59,7 +59,6 @@
                        </ul>
                     </li>
                     @endcan
-                    @can('الكتاب')
 					<li class="slide">
                         <a class="side-menu__item" href="#" data-toggle="slide"><span class="side-menu__label">المستخدمين</span><i class="angle fe fe-chevron-down"></i></a>
                         <ul class="slide-menu">
@@ -68,92 +67,42 @@
                                <a class="side-menu__item"  href="{{ url('/users') }}"><span class="side-menu__label">المستخدمين</a>
 					        </li>
 					        @endcan
-                            @can('الكتاب')
-                            <li>
-                                <a class="side-menu__item" href="{{ url('/writers') }}"><span class="side-menu__label">الكتاب</a>
-                            </li>
-                            @endcan
-                            @can('المشتركين')
-                            <li>
-                                <a class="side-menu__item" href="{{ url('/subscribers') }}"><span class="side-menu__label">المشتركين</a>
-                            </li>
-                            @endcan
-                            @can('رؤساء الاقسام')
-                            <li>
-                                <a class="side-menu__item" href="{{ url('/supervisors') }}"><span class="side-menu__label">رؤساء الاقسام</a>
-                            </li>
-                            @endcan
-                            @can('انشاء مستخدم')
-                            <li>
-                                <a class="side-menu__item" href="{{ url('/users/create') }}"><span class="side-menu__label">انشاء مستخدم</a>
-                            </li>
-                            @endcan
-                            @can('انشاء كاتب')
-                            <li>
-                                <a class="side-menu__item" href="{{ url('/writers/create') }}"><span class="side-menu__label">انشاء كاتب</a>
-                            </li>
-                            @endcan
-
                         </ul>
                     </li>
-                    @endcan
-                    @can('الاقسام')
+                    {{--  @can('الاقسام')  --}}
                     <li class="slide">
                         <a class="side-menu__item" href="#" data-toggle="slide"><span class="side-menu__label">الاقسام</span><i class="angle fe fe-chevron-down"></i></a>
                         <ul class="slide-menu">
-					       @can('الاقسام')
+					       {{--  @can('الاقسام')  --}}
 					       <li>
-					       	<a class="side-menu__item" href="{{ url('/categories' ) }}"><span class="side-menu__label">الاقسام</a>
+					       	<a class="side-menu__item" href="{{ url('/category' ) }}"><span class="side-menu__label">الاقسام</a>
                            </li>
-                           @endcan
-                           @can('انشاء قسم')
+                           {{--  @endcan
+                           @can('انشاء قسم')  --}}
 					       <li>
-					       	<a class="side-menu__item" href="{{ url('/categories/create' ) }}"><span class="side-menu__label">انشاء قسم</a>
+					       	<a class="side-menu__item" href="{{ url('/category/create' ) }}"><span class="side-menu__label">انشاء قسم</a>
                            </li>
-                           @endcan
+                           {{--  @endcan  --}}
                         </ul>
                     </li>
-                    @endcan
-                    @if (auth()->user()->hasRole('رئيس قسم'))
-                    <li class="slide">
-                        <a class="side-menu__item" href="#" data-toggle="slide"><span class="side-menu__label">التصويت</span><i class="angle fe fe-chevron-down"></i></a>
+                    {{--  @endcan  --}}
+                     {{--  @can('المنتجات')  --}}
+                     <li class="slide">
+                        <a class="side-menu__item" href="#" data-toggle="slide"><span class="side-menu__label">المنتجات</span><i class="angle fe fe-chevron-down"></i></a>
                         <ul class="slide-menu">
+					       {{--  @can('المنتجات')  --}}
 					       <li>
-					       	<a class="side-menu__item" href="{{ url('/votes' ) }}"><span class="side-menu__label">التصويت</a>
+					       	<a class="side-menu__item" href="{{ url('/product' ) }}"><span class="side-menu__label">المنتجات</a>
                            </li>
+                           {{--  @endcan
+                           @can('انشاء منتج')  --}}
 					       <li>
-					       	<a class="side-menu__item" href="{{ url('/votes/create' ) }}"><span class="side-menu__label">انشاء تصويت</a>
+					       	<a class="side-menu__item" href="{{ url('/product/create' ) }}"><span class="side-menu__label">انشاء منتج</a>
                            </li>
+                           {{--  @endcan  --}}
                         </ul>
                     </li>
-                    <li class="slide">
-                        <a class="side-menu__item" href="#" data-toggle="slide"><span class="side-menu__label">الكتاب في القسم</span><i class="angle fe fe-chevron-down"></i></a>
-                        <ul class="slide-menu">
-                            @can('انشاء كاتب في القسم')
-                            <li>
-                                <a class="side-menu__item" href="{{ url('/categories/writers/create') }}"><span class="side-menu__label">انشاء كاتب في القسم</a>
-                            </li>
-                            @endcan
-                            @can('تعيين كاتب في القسم')
-                            <li>
-                                <a class="side-menu__item" href="{{ url('/categorywriter') }}"><span class="side-menu__label">تعيين كاتب في القسم</a>
-                            </li>
-                            @endcan
-                        </ul>
-                    </li>
-                    <li class="slide">
-                        <a class="side-menu__item" href="#" data-toggle="slide"><span class="side-menu__label">الاقسام</span><i class="angle fe fe-chevron-down"></i></a>
-                        <ul class="slide-menu">
-                           @can("اقسامي")
-                           @foreach (auth()->user()->mycategories as $category)
-					       <li>
-					       	<a class="side-menu__item" href="/categories/{{$category->id}}"><span class="side-menu__label">{{$category->name}}</a>
-                           </li>
-                           @endforeach
-                           @endcan
-                        </ul>
-                    </li>
-                    @endif
+                    {{--  @endcan  --}}
 					@can('تعديل الموقع')
 					<li class="slide">
 						<a class="side-menu__item" href="{{ url('/setting' ) }}"><span class="side-menu__label">الاعدادات</a>
