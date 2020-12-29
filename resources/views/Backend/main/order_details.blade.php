@@ -37,42 +37,23 @@
  					<table id="example1" class="table key-buttons text-md-nowrap text-center">
  						<thead>
  							<tr>
+ 								<th class="border-bottom-0">اسم الطلب</th>
  								<th class="border-bottom-0">اسم المنتج</th>
- 								<th class="border-bottom-0">النوع</th>
-                                <th class="border-bottom-0">القيمة</th>
-                                <th class="border-bottom-0">الرسالة</th>
-                                <th class="border-bottom-0">بداية العرض</th>
-                                <th class="border-bottom-0">نهاية العرض</th>
- 								<th class="border-bottom-0">الصلاحيات</th>
+                                <th class="border-bottom-0">اسم المنتج</th>
+                                <th class="border-bottom-0">السعر</th>
+                                <th class="border-bottom-0">السعر الكلي</th>
+                                <th class="border-bottom-0">الكمية</th>
  							</tr>
  						</thead>
  						<tbody>
-						 @foreach ($offers as $offer)
+						 @foreach ($orderDetails as $orderDetail)
  							<tr>
- 								<td>{{$offer->product->name}}</td>
-                                <td>{{$offer->type}}</td>
-                                <td>{{$offer->value}}</td>
-                                <td>{{$offer->message}}</td>
-                                <td>{{$offer->start_offer}}</td>
-                                <td>{{$offer->end_offer}}</td>
- 								<td>
-                                     {{--  @can('مشاهدة عرض')  --}}
-                                     <a class="btn btn-success btn-sm" href="/offer/{{$offer->id}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                     {{--  @endcan  --}}
-                                     {{--  @can('تعديل عرض')  --}}
-                                     <a class="btn btn-primary btn-sm" href="/offer/{{$offer->id}}/edit"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                     {{--  @endcan  --}}
-                                     {{--  @can('حذف عرض')  --}}
-                                     <a class="btn btn-danger btn-sm"  href="/offer/{{$offer->id}}"
-                                        onclick="event.preventDefault();
-                                        document.getElementById('delete-offer-{{$offer->id}}').submit();"><i class="fa fa-trash" aria-hidden="true"></i>
-                                     </a>
-                                     <form id="delete-offer-{{$offer->id}}" action="/offer/{{$offer->id}}" method="POST" class="d-none">
-                                        @csrf
-                                        @method("delete")
-                                     </form>
-                                     {{--  @endcan  --}}
-                                </td>
+ 								<td>{{$orderDetail->order->name}}</td>
+                                <td>{{$orderDetail->product->name}}</td>
+                                <td>{{$orderDetail->name}}</td>
+                                <td>{{$orderDetail->price}}</td>
+                                <td>{{$orderDetail->total_price}}</td>
+                                <td>{{$orderDetail->quantity}}</td>
  							</tr>
 						 @endforeach
  						</tbody>

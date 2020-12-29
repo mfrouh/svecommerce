@@ -15,7 +15,8 @@ class OfferController extends Controller
      */
     public function index()
     {
-        return view('Backend.offers.index');
+        $offers=Offer::all();
+        return view('Backend.offers.index',compact('offers'));
     }
 
     /**
@@ -81,7 +82,8 @@ class OfferController extends Controller
         $this->validate($request,[
             'product_id'=>'required|numeric',
             'type'=>'required|in:fixed,variable',
-            'value'=>'required','message'=>'nullable',
+            'value'=>'required',
+            'message'=>'nullable',
             'start_offer'=>'required|before_or_equal:end_offer',
             'end_offer'=>'required|after_or_equal:start_offer'
         ]);

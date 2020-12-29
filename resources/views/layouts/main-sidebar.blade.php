@@ -102,6 +102,15 @@
                            {{--  @endcan  --}}
                         </ul>
                     </li>
+                    <li class="slide">
+						<a class="side-menu__item" href="{{ url('/offer' ) }}"><span class="side-menu__label">العروض</a>
+                    </li>
+                    <li class="slide">
+						<a class="side-menu__item" href="{{ url('/orders' ) }}"><span class="side-menu__label">الطلبات</a>
+                    </li>
+                    <li class="slide">
+						<a class="side-menu__item" href="{{ url('/tags' ) }}"><span class="side-menu__label">كلمات لها علاقة</a>
+					</li>
                     {{--  @endcan  --}}
 					@can('تعديل الموقع')
 					<li class="slide">

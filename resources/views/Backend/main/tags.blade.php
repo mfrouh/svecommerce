@@ -37,41 +37,26 @@
  					<table id="example1" class="table key-buttons text-md-nowrap text-center">
  						<thead>
  							<tr>
- 								<th class="border-bottom-0">اسم المنتج</th>
- 								<th class="border-bottom-0">النوع</th>
-                                <th class="border-bottom-0">القيمة</th>
-                                <th class="border-bottom-0">الرسالة</th>
-                                <th class="border-bottom-0">بداية العرض</th>
-                                <th class="border-bottom-0">نهاية العرض</th>
- 								<th class="border-bottom-0">الصلاحيات</th>
+ 								<th class="border-bottom-0">اسم الكلمة لها علاقة</th>
+                                <th class="border-bottom-0">عدد المنتجات</th>
+                                <th class="border-bottom-0">الصلاحيات</th>
  							</tr>
  						</thead>
  						<tbody>
-						 @foreach ($offers as $offer)
+						 @foreach ($tags as $tag)
  							<tr>
- 								<td>{{$offer->product->name}}</td>
-                                <td>{{$offer->type}}</td>
-                                <td>{{$offer->value}}</td>
-                                <td>{{$offer->message}}</td>
-                                <td>{{$offer->start_offer}}</td>
-                                <td>{{$offer->end_offer}}</td>
- 								<td>
-                                     {{--  @can('مشاهدة عرض')  --}}
-                                     <a class="btn btn-success btn-sm" href="/offer/{{$offer->id}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                     {{--  @endcan  --}}
-                                     {{--  @can('تعديل عرض')  --}}
-                                     <a class="btn btn-primary btn-sm" href="/offer/{{$offer->id}}/edit"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                     {{--  @endcan  --}}
-                                     {{--  @can('حذف عرض')  --}}
-                                     <a class="btn btn-danger btn-sm"  href="/offer/{{$offer->id}}"
-                                        onclick="event.preventDefault();
-                                        document.getElementById('delete-offer-{{$offer->id}}').submit();"><i class="fa fa-trash" aria-hidden="true"></i>
-                                     </a>
-                                     <form id="delete-offer-{{$offer->id}}" action="/offer/{{$offer->id}}" method="POST" class="d-none">
-                                        @csrf
-                                        @method("delete")
-                                     </form>
-                                     {{--  @endcan  --}}
+                                 <td>{{$tag->name}}</td>
+                                 <td>{{$tag->products->count()}}</td>
+                                 <td>
+                                 <a class="btn btn-success btn-sm" href="/tags/{{$tag->name}}/products"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                 <a class="btn btn-danger btn-sm"  href="/tags/{{$tag->id}}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('delete-tags-{{$tag->id}}').submit();"><i class="fa fa-trash" aria-hidden="true"></i>
+                                 </a>
+                                 <form id="delete-tags-{{$tag->id}}" action="/tags/{{$tag->id}}" method="POST" class="d-none">
+                                    @csrf
+                                    @method("delete")
+                                 </form>
                                 </td>
  							</tr>
 						 @endforeach
