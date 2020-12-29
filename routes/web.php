@@ -22,6 +22,8 @@ Route::resource('product', 'Backend\ProductController');
 Route::resource('offer', 'Backend\OfferController');
 Route::resource('roles', 'Backend\RoleController');
 Route::resource('permissions', 'Backend\PermissionController');
+Route::resource('employee', 'Backend\AdminController');
+Route::get('/users', 'Backend\AdminController@users');
 Route::get('/orders', 'Backend\OrderController@orders');
 Route::get('/orders/{id}/details', 'Backend\OrderController@order_details');
 Route::get('/tags', 'Backend\TagController@tags');

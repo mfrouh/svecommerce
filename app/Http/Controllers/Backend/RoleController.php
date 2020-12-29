@@ -50,7 +50,7 @@ class RoleController extends Controller
         $this->validate($request,[
             'name'=>'required|unique:roles'
         ]);
-        Role::create(['name'=>$request->name]);
+        Role::create(['name'=>$request->name,'guard_name'=>'admin']);
         return redirect('/roles')->with('success','تم انشاء الوظيفة بنجاح');
     }
 
@@ -110,7 +110,7 @@ class RoleController extends Controller
         $this->validate($request,[
             'name'=>'required|unique:roles,name,'.$id,
         ]);
-        DB::table('roles')->where('id',$id)->update(['name'=>$request->name]);
+        DB::table('roles')->where('id',$id)->update(['name'=>$request->name,'guard_name'=>'admin']);
         return redirect('/roles')->with('success','تم تعديل الوظيفة بنجاح');
     }
 
@@ -122,7 +122,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::findById($id)->delete();
+        Role::findById($id,'admin')->delete();
         return back()->with('success','تم حذف الوظيفة بنجاح');
     }
 }
