@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-انشاء موظف
+تعديل موظف
 @endsection
 @section('css')
 <link href="{{URL::asset('assets/plugins/inputtags/inputtags.css')}}" rel="stylesheet">
@@ -10,7 +10,7 @@
   <div class="breadcrumb-header justify-content-between">
 	<div class="my-auto">
 		<div class="d-flex">
-			<h4 class="content-title mb-0 my-auto"> انشاء مو</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
+			<h4 class="content-title mb-0 my-auto"> تعديل موظف</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
 		</div>
 	</div>
   </div>
@@ -26,7 +26,7 @@
  		<div class="card mg-b-20">
  			<div class="card-header pb-0">
  				<div class="d-flex justify-content-between">
- 					<h4 class="card-title mg-b-0">انشاء موظف</h4>
+ 					<h4 class="card-title mg-b-0">تعديل موظف</h4>
  				</div>
  			</div>
  			<div class="card-body">
@@ -62,12 +62,11 @@
                     <label for="">الوظائف</label>
                     <hr>
                     @foreach ($roles as $k=> $role)
-                    <label class="btn btn-light">
-                     <input type="radio" name="role" {{in_array($k,$adminRole)?'checked':''}} value="{{$role}}">
-                     {{$k}}
-                    </label>
+                      <label class="btn btn-light">
+                       <input type="radio" name="role" {{in_array($k,$adminRole)?'checked':''}} value="{{$role}}">
+                       {{$k}}
+                      </label>
                     @endforeach
-
                     @error('roles')
                     <small id="helpId" class="text-muted">{{$message}}</small>
                     @enderror

@@ -14,10 +14,10 @@
 				<div class="app-sidebar__user clearfix">
 					<div class="dropdown user-pro-body">
 						<div class="">
-							<img class="avatar avatar-xl brround" src="{{URL::asset(auth()->user()->image)}}"><span class="avatar-status profile-status bg-green"></span>
+							<img class="avatar avatar-xl brround" src="{{URL::asset(auth()->guard('admin')->user()->image)}}"><span class="avatar-status profile-status bg-green"></span>
 						</div>
 						<div class="user-info">
-							<h4 class="font-weight-semibold mt-3 mb-0">{{auth()->user()->name}}</h4>
+							<h4 class="font-weight-semibold mt-3 mb-0">{{auth()->guard('admin')->user()->name}}</h4>
 						</div>
 					</div>
 				</div>
@@ -62,11 +62,22 @@
 					<li class="slide">
                         <a class="side-menu__item" href="#" data-toggle="slide"><span class="side-menu__label">المستخدمين</span><i class="angle fe fe-chevron-down"></i></a>
                         <ul class="slide-menu">
-                            @can('المستخدمين')
+                            {{-- @can('المستخدمين') --}}
 					        <li>
                                <a class="side-menu__item"  href="{{ url('/users') }}"><span class="side-menu__label">المستخدمين</a>
 					        </li>
-					        @endcan
+                            {{-- @endcan
+                            @can('الموظفين') --}}
+					        <li>
+                               <a class="side-menu__item"  href="{{ url('/employee') }}"><span class="side-menu__label">الموظفين</a>
+					        </li>
+                            {{-- @endcan
+                            @can('انشاء موظف') --}}
+					        <li>
+                               <a class="side-menu__item"  href="{{ url('/employee/create') }}"><span class="side-menu__label">انشاء موظف</a>
+					        </li>
+					        {{-- @endcan --}}
+
                         </ul>
                     </li>
                     {{--  @can('الاقسام')  --}}

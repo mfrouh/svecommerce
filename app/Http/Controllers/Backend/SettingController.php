@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
-use App\Models\User;
+use App\Models\admin;
+use App\Notifications\ChangePassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -62,10 +63,11 @@ class SettingController extends Controller
             'old_password'=>'required|min:8',
             'password'=>'required|min:8|confirmed'
         ]);
-        $user=User::where('id',auth()->user()->id)->first();
-        if (Hash::check($request->old_password,$user->password)) {
-            $user->password=Hash::make($request->password);
-            $user->save();
+        $admin=admin::where('id',auth()->guard('admin')->user()->id)->first();
+        if (Hash::check($request->old_password,$admin->password)) {
+            $admin->password=Hash::make($request->password);
+            $admin->save();
+                $admin->notify(new ChangePassword());
                 return back()->with('success','تمت تغير كلمة المرور بنجاح');
         }
         else {
@@ -76,16 +78,16 @@ class SettingController extends Controller
     {
         $this->validate($request,[
             'name'=>'required',
-            'email'=>'required|unique:users,email,'.auth()->user()->id,
+            'email'=>'required|unique:admins,email,'.auth()->guard('admin')->user()->id,
             'image'=>'image|nullable'
         ]);
-        $user=User::where('id',auth()->user()->id)->first();
-        $user->name=$request->name;
-        $user->email=$request->email;
+        $admin=admin::where('id',auth()->guard('admin')->user()->id)->first();
+        $admin->name=$request->name;
+        $admin->email=$request->email;
         if ($request->image) {
-            $user->image=sortimage('storage/users/',$request->image);
+            $admin->image=sortimage('storage/admins/',$request->image);
         }
-        $user->save();
+        $admin->save();
         return back()->with('success','تم التعديل البيانات بنجاح');
 
     }

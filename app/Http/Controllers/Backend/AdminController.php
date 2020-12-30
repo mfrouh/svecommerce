@@ -51,17 +51,17 @@ public function create()
 public function store(Request $request)
 {
      $this->validate($request, [
-        'role' => 'required',
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:admins',
         'password' => 'required|string|min:8|confirmed',
+        'role'=>'required',
      ]);
 
      $input = $request->all();
      $input['password'] = Hash::make($input['password']);
      $admin = admin::create($input);
      $admin->syncRoles($request->input('role'));
-     return redirect()->route('admins.index')
+     return redirect('/employee')
      ->with('success','تم اضافة الموظف بنجاح');
 }
 
@@ -110,10 +110,10 @@ public function edit($id)
 public function update(Request $request, $id)
 {
      $this->validate($request, [
-     'role' => 'required',
      'name' => 'required|string|max:255',
      'email' => 'required|string|email|max:255|unique:admins,email,'.$id,
      'password' => 'nullable|string|min:8|confirmed',
+     'role'=>'required',
      ]);
      $admin=admin::find($id);
      $admin->name=$request->name;
@@ -136,6 +136,6 @@ public function update(Request $request, $id)
 public function destroy(Request $request)
 {
    admin::find($request->admin_id)->delete();
-   return redirect()->route('admins.index')->with('success','تم حذف الموظف بنجاح');
+   return redirect('/employye')->with('success','تم حذف الموظف بنجاح');
 }
 }

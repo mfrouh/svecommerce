@@ -23,10 +23,10 @@
 										<div class="d-flex">
 											<h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">التنبهات</h6>
 										</div>
-										<p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">لديك {{auth()->user()->unreadnotifications->count()}} تنبهات لم تقراء</p>
+										<p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">لديك {{auth()->guard('admin')->user()->unreadnotifications->count()}} تنبهات لم تقراء</p>
 									</div>
 									<div class="main-notification-list Notification-scroll">
-                                        @forelse (auth()->user()->notifications as $notification)
+                                        @forelse (auth()->guard('admin')->user()->notifications as $notification)
 										<a class="d-flex p-3 border-bottom" href="#">
 											<div class="notifyimg bg-pink">
 												<i class="la la-file-alt text-white"></i>
@@ -53,13 +53,13 @@
 								</div>
 							</div>
 							<div class="dropdown main-profile-menu nav nav-item nav-link">
-								<a class="profile-user d-flex" href=""><img alt="" src="{{URL::asset(auth()->user()->image)}}"></a>
+								<a class="profile-user d-flex" href=""><img alt="" src="{{URL::asset(auth()->guard('admin')->user()->image)}}"></a>
 								<div class="dropdown-menu">
 									<div class="main-header-profile bg-primary p-3">
 										<div class="d-flex wd-100p">
-											<div class="main-img-user"><img alt="" src="{{URL::asset(auth()->user()->image)}}" class=""></div>
+											<div class="main-img-user"><img alt="" src="{{URL::asset(auth()->guard('admin')->user()->image)}}" class=""></div>
 											<div class="mr-3 my-auto">
-												<h6>{{auth()->user()->name}}</h6>
+												<h6>{{auth()->guard('admin')->user()->name}}</h6>
 											</div>
 										</div>
 									</div>

@@ -62,10 +62,10 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-       $role=Role::findById($id);
+       $role=Role::findById($id,'admin');
        if ($role->name!=="SuperAdmin") {
        $permissions=Permission::all();
-       $rolepermissions=Role::findById($id)->permissions->pluck('id')->toArray();
+       $rolepermissions=Role::findById($id,'admin')->permissions->pluck('id')->toArray();
        return view('Backend.roles.show',compact('role','permissions','rolepermissions'));
        }
        return abort('404');
