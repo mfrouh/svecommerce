@@ -40,7 +40,7 @@ class Product extends Model
     }
     public function gallery()
     {
-      return $this->morphToMany(Image::class,'imageable');
+      return $this->morphMany(Image::class,'imageable');
     }
     public function offer()
     {

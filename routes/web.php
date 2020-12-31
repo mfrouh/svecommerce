@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
 Route::resource('category', 'Backend\CategoryController');
 Route::resource('product', 'Backend\ProductController');
 Route::resource('offer', 'Backend\OfferController');
+Route::resource('coupon', 'Backend\CouponController');
 Route::resource('roles', 'Backend\RoleController');
 Route::resource('permissions', 'Backend\PermissionController');
 Route::resource('employee', 'Backend\AdminController');

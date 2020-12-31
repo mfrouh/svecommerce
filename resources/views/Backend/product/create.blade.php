@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">وصف المنتج</label>
-                    <textarea name="description"  class="form-control  @error('description') is-invalid @enderror"  rows="4">{{old('description')}}</textarea>
+                    <textarea name="description" id="body" class="form-control  @error('description') is-invalid @enderror"  rows="4">{{old('description')}}</textarea>
                     @error('description')
                     <small id="helpId" class="text-muted">{{$message}}</small>
                     @enderror
@@ -92,6 +92,11 @@
                     <small id="helpId" class="text-muted">{{$message}}</small>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label for="">صور المنتج</label>
+                    <input type="file" name="images[]" multiple accept="*/image">
+                </div>
+
                 <div class="form-group text-center">
                     <input type="submit" class="btn btn-primary" value="حفظ">
                 </div>

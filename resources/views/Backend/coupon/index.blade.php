@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-المنتجات
+الخصومات
 @endsection
 @section('css')
 <!-- Internal Data table css -->
@@ -16,7 +16,7 @@
   <div class="breadcrumb-header justify-content-between">
 	<div class="my-auto">
 		<div class="d-flex">
-			<h4 class="content-title mb-0 my-auto">المنتجات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
+			<h4 class="content-title mb-0 my-auto">الخصومات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
 		</div>
 	</div>
   </div>
@@ -29,7 +29,7 @@
  		<div class="card mg-b-20">
  			<div class="card-header pb-0">
  				<div class="d-flex justify-content-between">
- 					<h4 class="card-title mg-b-0">المنتجات</h4>
+ 					<h4 class="card-title mg-b-0">الخصومات</h4>
  				</div>
  			</div>
  			<div class="card-body">
@@ -37,50 +37,48 @@
  					<table id="example1" class="table key-buttons text-md-nowrap text-center">
  						<thead>
  							<tr>
- 								<th class="border-bottom-0">الاسم</th>
- 								<th class="border-bottom-0">الصورة</th>
-                                <th class="border-bottom-0">الحالة</th>
-                                <th class="border-bottom-0">السعر</th>
-                                <th class="border-bottom-0">القسم</th>
-                                <th class="border-bottom-0">sku</th>
+ 								<th class="border-bottom-0">الكود</th>
+ 								<th class="border-bottom-0">النوع</th>
+                                <th class="border-bottom-0">القيمة</th>
+                                <th class="border-bottom-0">الرسالة</th>
+                                <th class="border-bottom-0">بداية الخصم</th>
+                                <th class="border-bottom-0">نهاية الخصم</th>
+                                <th class="border-bottom-0">عددالمرات</th>
+                                <th class="border-bottom-0">الشرط</th>
+                                <th class="border-bottom-0">قيمة الشرط</th>
  								<th class="border-bottom-0">الصلاحيات</th>
  							</tr>
  						</thead>
  						<tbody>
-						 @foreach ($products as $product)
+						 @foreach ($coupons as $coupon)
  							<tr>
- 								<td>{{$product->name}}</td>
-                <td>
-                     @if ($product->image)
-                       <img src="{{asset($product->image)}}" width="50px" height="50px" alt="">
-                     @else
-                       <img src="{{asset('storage/categories/1.png')}}" width="50px" height="50px" alt="">
-                     @endif
-                </td>
-                <td>{{$product->getstatus()}}</td>
-                <td>{{$product->price}} جنية</td>
-                <td>{{$product->category->name}}</td>
-                <td>{{$product->sku}}</td>
- 							  <td>
-                    <a class="btn btn-info btn-sm">اضافة عرض</a>
-                    <a class="btn btn-warning btn-sm">تعديل عرض</a>
-                     {{--  @can('مشاهدة منتج')  --}}
-                     <a class="btn btn-success btn-sm" href="/product/{{$product->id}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                     {{--  @endcan  --}}
-                     {{--  @can('تعديل منتج')  --}}
-                     <a class="btn btn-primary btn-sm" href="/product/{{$product->id}}/edit"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                     {{--  @endcan  --}}
-                     {{--  @can('حذف منتج')  --}}
-                     <a class="btn btn-danger btn-sm"  href="/product/{{$product->id}}"
-                        onclick="event.preventDefault();
-                        document.getElementById('delete-product-{{$product->id}}').submit();"><i class="fa fa-trash" aria-hidden="true"></i>
-                     </a>
-                     <form id="delete-product-{{$product->id}}" action="/product/{{$product->id}}" method="POST" class="d-none">
-                        @csrf
-                        @method("delete")
-                     </form>
-                     {{--  @endcan  --}}
-                </td>
+ 								<td>{{$coupon->code}}</td>
+                                <td>{{$coupon->type}}</td>
+                                <td>{{$coupon->value}}</td>
+                                <td>{{$coupon->message}}</td>
+                                <td>{{$coupon->start->format('d-m-Y (h:m A)')}}</td>
+                                <td>{{$coupon->end->format('d-m-Y (h:m A)')}}</td>
+                                <td>{{$coupon->times}}</td>
+                                <td>{{$coupon->cand}}</td>
+                                <td>{{$coupon->cand_value}}</td>
+ 								<td>
+                                     {{--  @can('مشاهدة عرض')  --}}
+                                     <a class="btn btn-success btn-sm" href="/coupon/{{$coupon->id}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                     {{--  @endcan  --}}
+                                     {{--  @can('تعديل عرض')  --}}
+                                     <a class="btn btn-primary btn-sm" href="/coupon/{{$coupon->id}}/edit"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                     {{--  @endcan  --}}
+                                     {{--  @can('حذف عرض')  --}}
+                                     <a class="btn btn-danger btn-sm"  href="/coupon/{{$coupon->id}}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('delete-coupon-{{$coupon->id}}').submit();"><i class="fa fa-trash" aria-hidden="true"></i>
+                                     </a>
+                                     <form id="delete-coupon-{{$coupon->id}}" action="/coupon/{{$coupon->id}}" method="POST" class="d-none">
+                                        @csrf
+                                        @method("delete")
+                                     </form>
+                                     {{--  @endcan  --}}
+                                </td>
  							</tr>
 						 @endforeach
  						</tbody>

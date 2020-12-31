@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->enum('status',['active','inactive'])->default('inactive');
             $table->string('slug');
             $table->decimal('price');
-            $table->string('sku');
+            $table->string('sku')->nullable();
             $table->timestamps();
         });
     }

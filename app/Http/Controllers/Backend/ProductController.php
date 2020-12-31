@@ -45,8 +45,10 @@ class ProductController extends Controller
             'description'=>'required|min:50',
             'price'=>'required|numeric',
             'status'=>'required|in:active,inactive',
-            'sku'=>'required',
-            'tags'=>'required'
+            'sku'=>'nullable',
+            'tags'=>'required',
+            'images'=>'required',
+            'images.*'=>'image',
         ]);
         $product= Product::create($request->all());
         $tags=explode(',',$request->tags);
@@ -57,6 +59,9 @@ class ProductController extends Controller
             $Ttags[]= $Ftag->id;
         }
         $product->tags()->sync($Ttags);
+        foreach ($request->images as $key => $image) {
+            $product->gallery()->create(['url'=>sortimage("storage/products/p$product->id",$image)]);
+        }
         return back()->with('success','تم انشاء المنتج بنجاح');
     }
 
@@ -97,7 +102,7 @@ class ProductController extends Controller
             'description'=>'required|min:50',
             'price'=>'required|numeric',
             'status'=>'required|in:active,inactive',
-            'sku'=>'required',
+            'sku'=>'nullable',
             'tags'=>'required',
         ]);
         $product->update($request->all());
