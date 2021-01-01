@@ -43,6 +43,7 @@
                                 <th class="border-bottom-0">الرسالة</th>
                                 <th class="border-bottom-0">بداية العرض</th>
                                 <th class="border-bottom-0">نهاية العرض</th>
+                                <th class="border-bottom-0">الحالة</th>
  								<th class="border-bottom-0">الصلاحيات</th>
  							</tr>
  						</thead>
@@ -50,11 +51,12 @@
 						 @foreach ($offers as $offer)
  							<tr>
  								<td>{{$offer->product->name}}</td>
-                                <td>{{$offer->gettype()}}</td>
+                                <td>{{$offer->atype}}</td>
                                 <td>{{$offer->value}}</td>
                                 <td>{{$offer->message}}</td>
                                 <td>{{$offer->start_offer->format('Y-m-d /h:i A')}}</td>
                                 <td>{{$offer->end_offer->format('Y-m-d /h:i A')}}</td>
+                                <td>{{$offer->activestatus}}</td>
  								<td>
                                      {{--  @can('تعديل عرض')  --}}
                                      <a class="btn btn-primary btn-sm" href="/offer/{{$offer->id}}/edit"><i class="fa fa-edit" aria-hidden="true"></i></a>

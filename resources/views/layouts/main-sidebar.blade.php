@@ -114,10 +114,22 @@
                         </ul>
                     </li>
                     <li class="slide">
-						<a class="side-menu__item" href="{{ url('/offer' ) }}"><span class="side-menu__label">العروض</a>
+                        <a class="side-menu__item" href="#" data-toggle="slide"><span class="side-menu__label">الخصومات</span><i class="angle fe fe-chevron-down"></i></a>
+                        <ul class="slide-menu">
+					       {{--  @can('الخصومات')  --}}
+					       <li>
+					       	<a class="side-menu__item" href="{{ url('/coupon' ) }}"><span class="side-menu__label">الخصومات</a>
+                           </li>
+                           {{--  @endcan
+                           @can('انشاء خصم')  --}}
+					       <li>
+					       	<a class="side-menu__item" href="{{ url('/coupon/create' ) }}"><span class="side-menu__label">انشاء خصم</a>
+                           </li>
+                           {{--  @endcan  --}}
+                        </ul>
                     </li>
                     <li class="slide">
-						<a class="side-menu__item" href="{{ url('/coupon' ) }}"><span class="side-menu__label">الخصومات</a>
+						<a class="side-menu__item" href="{{ url('/offer' ) }}"><span class="side-menu__label">العروض</a>
                     </li>
                     <li class="slide">
 						<a class="side-menu__item" href="{{ url('/orders' ) }}"><span class="side-menu__label">الطلبات</a>

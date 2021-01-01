@@ -11,15 +11,15 @@ class Coupon extends Model
 
     protected $fillable=['code','start','end','cand','cand_value','type','value','message','times'];
 
-    protected $appends=['isactive','activestatus'];
+    protected $appends=['isactive','activestatus','atype','acand'];
 
     protected $dates=['start','end'];
 
-    public function gettype()
+    public function getAtypeAttribute()
     {
       return  $this->type=="fixed"?'ثابت':'متغير';
     }
-    public function getcand()
+    public function getAcandAttribute()
     {
         if ($this->cand) {
             return  $this->cand=="more"?'اكثر':'اقل';

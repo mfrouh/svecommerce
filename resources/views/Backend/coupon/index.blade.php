@@ -54,14 +54,14 @@
 						 @foreach ($coupons as $coupon)
  							<tr>
  								<td>{{$coupon->code}}</td>
-                                <td>{{$coupon->gettype()}}</td>
+                                <td>{{$coupon->atype}}</td>
                                 <td>{{$coupon->value}}</td>
                                 <td>{{$coupon->message}}</td>
                                 <td>{{$coupon->start->format('d-m-Y /h:i A')}}</td>
                                 <td>{{$coupon->end->format('d-m-Y /h:i A')}}</td>
                                 <td>{{$coupon->activestatus}}</td>
                                 <td>{{$coupon->times}}</td>
-                                <td>{{$coupon->getcand()}}</td>
+                                <td>{{$coupon->acand}}</td>
                                 <td>{{$coupon->cand_value}}</td>
  								<td>
                                      {{--  @can('تعديل عرض')  --}}

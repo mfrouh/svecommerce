@@ -11,13 +11,27 @@ class Offer extends Model
 
     protected $fillable=['product_id','type','value','message','start_offer','end_offer'];
     protected $dates=['start_offer','end_offer'];
+    protected $appends=['isactive','activestatus','atype'];
 
     public function product()
     {
         return $this->belongsTo('App\Models\Product');
     }
-    public function gettype()
+    public function getAtypeAttribute()
     {
       return  $this->type=="fixed"?'ثابت':'متغير';
+    }
+    public function getIsactiveAttribute()
+    {
+         if ($this->start_offer <= now() && $this->end_offer >= now()) {
+             return 1;
+         }
+         else {
+             return 0;
+         }
+    }
+    public function getActivestatusAttribute()
+    {
+      return   $this->isactive==1?'متاح الان':'غير متاح الان';
     }
 }
