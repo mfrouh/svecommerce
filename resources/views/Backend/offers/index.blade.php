@@ -53,12 +53,9 @@
                                 <td>{{$offer->type}}</td>
                                 <td>{{$offer->value}}</td>
                                 <td>{{$offer->message}}</td>
-                                <td>{{$offer->start_offer}}</td>
-                                <td>{{$offer->end_offer}}</td>
+                                <td>{{$offer->start_offer->format('Y-m-d /h:m A')}}</td>
+                                <td>{{$offer->end_offer->format('Y-m-d /h:m A')}}</td>
  								<td>
-                                     {{--  @can('مشاهدة عرض')  --}}
-                                     <a class="btn btn-success btn-sm" href="/offer/{{$offer->id}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                     {{--  @endcan  --}}
                                      {{--  @can('تعديل عرض')  --}}
                                      <a class="btn btn-primary btn-sm" href="/offer/{{$offer->id}}/edit"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                      {{--  @endcan  --}}

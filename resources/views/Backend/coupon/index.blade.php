@@ -56,15 +56,12 @@
                                 <td>{{$coupon->type}}</td>
                                 <td>{{$coupon->value}}</td>
                                 <td>{{$coupon->message}}</td>
-                                <td>{{$coupon->start->format('d-m-Y (h:m A)')}}</td>
-                                <td>{{$coupon->end->format('d-m-Y (h:m A)')}}</td>
+                                <td>{{$coupon->start->format('d-m-Y /h:m A')}}</td>
+                                <td>{{$coupon->end->format('d-m-Y /h:m A')}}</td>
                                 <td>{{$coupon->times}}</td>
                                 <td>{{$coupon->cand}}</td>
                                 <td>{{$coupon->cand_value}}</td>
  								<td>
-                                     {{--  @can('مشاهدة عرض')  --}}
-                                     <a class="btn btn-success btn-sm" href="/coupon/{{$coupon->id}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                     {{--  @endcan  --}}
                                      {{--  @can('تعديل عرض')  --}}
                                      <a class="btn btn-primary btn-sm" href="/coupon/{{$coupon->id}}/edit"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                      {{--  @endcan  --}}

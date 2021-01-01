@@ -10,6 +10,7 @@ class Offer extends Model
     use HasFactory;
 
     protected $fillable=['product_id','type','value','message','start_offer','end_offer'];
+    protected $dates=['start_offer','end_offer'];
 
     public function product()
     {

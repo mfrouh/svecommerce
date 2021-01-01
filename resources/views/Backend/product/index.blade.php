@@ -61,9 +61,12 @@
                 <td>{{$product->price}} جنية</td>
                 <td>{{$product->category->name}}</td>
                 <td>{{$product->sku}}</td>
- 							  <td>
-                    <a class="btn btn-info btn-sm">اضافة عرض</a>
-                    <a class="btn btn-warning btn-sm">تعديل عرض</a>
+ 			   <td>
+                    @if ($product->offer)
+                    <a class="btn btn-warning btn-sm" href="/offer/{{$product->offer->id}}/edit">تعديل عرض</a>
+                    @else
+                    <a class="btn btn-info btn-sm" href="/offer/create/{{$product->id}}">اضافة عرض</a>
+                    @endif
                      {{--  @can('مشاهدة منتج')  --}}
                      <a class="btn btn-success btn-sm" href="/product/{{$product->id}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                      {{--  @endcan  --}}
