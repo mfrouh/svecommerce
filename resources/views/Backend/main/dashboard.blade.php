@@ -22,7 +22,7 @@
 @section('content')
 				<!-- row -->
 <div class="row row-sm">
-    @can('الاقسام')
+    {{--  @can('الاقسام')  --}}
 	<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 		<div class="card overflow-hidden sales-card bg-primary-gradient">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
@@ -45,8 +45,8 @@
 			</div>
 		</div>
     </div>
-    @endcan
-    @can('الكتاب')
+    {{--  @endcan
+    @can('الكتاب')  --}}
 	<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 		<div class="card overflow-hidden sales-card bg-danger-gradient">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
@@ -63,8 +63,8 @@
 			</div>
 		</div>
     </div>
-    @endcan
-    @can('المقالات')
+    {{--  @endcan  --}}
+    {{--  @can('المقالات')  --}}
 	<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 		<div class="card overflow-hidden sales-card bg-success-gradient">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
@@ -88,8 +88,8 @@
 			</div>
 		</div>
     </div>
-    @endcan
-    @can('المستخدمين')
+    {{--  @endcan
+    @can('المستخدمين')  --}}
 	<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 		<div class="card overflow-hidden sales-card bg-warning-gradient">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
@@ -106,8 +106,8 @@
 			</div>
 		</div>
     </div>
-    @endcan
-    @can('الصلاحيات')
+    {{--  @endcan
+    @can('الصلاحيات')  --}}
     <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 		<div class="card overflow-hidden sales-card bg-purple-gradient ">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
@@ -124,8 +124,8 @@
 			</div>
 		</div>
     </div>
-    @endcan
-    @can('الوظائف')
+    {{--  @endcan
+    @can('الوظائف')  --}}
     <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 		<div class="card overflow-hidden sales-card bg-info-gradient ">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
@@ -142,9 +142,9 @@
 			</div>
 		</div>
     </div>
-    @endcan
-    @can('المشتركين')
-    <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+    {{--  @endcan
+    @can('المشتركين')  --}}
+    {{--  <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 		<div class="card overflow-hidden sales-card bg-danger ">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
 				<div class="">
@@ -159,9 +159,9 @@
 				</div>
 			</div>
 		</div>
-    </div>
-    @endcan
-    @can('كلمات لها علاقة')
+    </div>  --}}
+    {{--  @endcan
+    @can('كلمات لها علاقة')  --}}
     <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
 		<div class="card overflow-hidden sales-card bg-light ">
 			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
@@ -178,7 +178,55 @@
 			</div>
 		</div>
     </div>
-    @endcan
+    {{--  @endcan  --}}
+    <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+		<div class="card overflow-hidden sales-card bg-secondary ">
+			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+				<div class="">
+					<h6 class="mb-3 tx-12 text-white">عدد الطلبات</h6>
+				</div>
+				<div class="pb-0 mt-0">
+					<div class="d-flex">
+						<div class="">
+							<h4 class="tx-20 font-weight-bold mb-1 text-white">{{$orders}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+		<div class="card overflow-hidden sales-card bg-info-gradient ">
+			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+				<div class="">
+					<h6 class="mb-3 tx-12 text-white"> الخصومات</h6>
+				</div>
+				<div class="pb-0 mt-0">
+					<div class="d-flex">
+						<div class="">
+							<h4 class="tx-20 font-weight-bold mb-1 text-white">{{$coupons}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+		<div class="card overflow-hidden sales-card bg-pink-gradient ">
+			<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+				<div class="">
+					<h6 class="mb-3 tx-12 text-white"> العروض</h6>
+				</div>
+				<div class="pb-0 mt-0">
+					<div class="d-flex">
+						<div class="">
+							<h4 class="tx-20 font-weight-bold mb-1 text-white">{{$offers}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
 </div>
 
   </div>

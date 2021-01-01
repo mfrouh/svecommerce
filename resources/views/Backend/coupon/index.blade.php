@@ -43,6 +43,7 @@
                                 <th class="border-bottom-0">الرسالة</th>
                                 <th class="border-bottom-0">بداية الخصم</th>
                                 <th class="border-bottom-0">نهاية الخصم</th>
+                                <th class="border-bottom-0">الحالة</th>
                                 <th class="border-bottom-0">عددالمرات</th>
                                 <th class="border-bottom-0">الشرط</th>
                                 <th class="border-bottom-0">قيمة الشرط</th>
@@ -53,13 +54,14 @@
 						 @foreach ($coupons as $coupon)
  							<tr>
  								<td>{{$coupon->code}}</td>
-                                <td>{{$coupon->type}}</td>
+                                <td>{{$coupon->gettype()}}</td>
                                 <td>{{$coupon->value}}</td>
                                 <td>{{$coupon->message}}</td>
-                                <td>{{$coupon->start->format('d-m-Y /h:m A')}}</td>
-                                <td>{{$coupon->end->format('d-m-Y /h:m A')}}</td>
+                                <td>{{$coupon->start->format('d-m-Y /h:i A')}}</td>
+                                <td>{{$coupon->end->format('d-m-Y /h:i A')}}</td>
+                                <td>{{$coupon->activestatus}}</td>
                                 <td>{{$coupon->times}}</td>
-                                <td>{{$coupon->cand}}</td>
+                                <td>{{$coupon->getcand()}}</td>
                                 <td>{{$coupon->cand_value}}</td>
  								<td>
                                      {{--  @can('تعديل عرض')  --}}

@@ -16,4 +16,8 @@ class Offer extends Model
     {
         return $this->belongsTo('App\Models\Product');
     }
+    public function gettype()
+    {
+      return  $this->type=="fixed"?'ثابت':'متغير';
+    }
 }

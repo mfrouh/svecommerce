@@ -50,11 +50,11 @@
 						 @foreach ($offers as $offer)
  							<tr>
  								<td>{{$offer->product->name}}</td>
-                                <td>{{$offer->type}}</td>
+                                <td>{{$offer->gettype()}}</td>
                                 <td>{{$offer->value}}</td>
                                 <td>{{$offer->message}}</td>
-                                <td>{{$offer->start_offer->format('Y-m-d /h:m A')}}</td>
-                                <td>{{$offer->end_offer->format('Y-m-d /h:m A')}}</td>
+                                <td>{{$offer->start_offer->format('Y-m-d /h:i A')}}</td>
+                                <td>{{$offer->end_offer->format('Y-m-d /h:i A')}}</td>
  								<td>
                                      {{--  @can('تعديل عرض')  --}}
                                      <a class="btn btn-primary btn-sm" href="/offer/{{$offer->id}}/edit"><i class="fa fa-edit" aria-hidden="true"></i></a>
