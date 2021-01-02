@@ -46,6 +46,10 @@ class Product extends Model
     {
         return $this->hasOne(Offer::class);
     }
+    public function variants()
+    {
+        return $this->belongsToMany('App\Models\Variant', 'product_variant', 'product_id', 'variant_id');
+    }
     public function getPriceafterofferAttribute()
     {
        if ($this->offer && $this->offer->isactive) {
