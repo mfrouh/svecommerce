@@ -9,6 +9,7 @@ use App\Models\Coupon;
 use App\Models\Offer;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -41,5 +42,10 @@ class MainController extends Controller
     'actproducts','inactproducts',
     'actcategories','inactcategories',
     'orders','offers','coupons'));
+  }
+  public function reviews()
+  {
+    $reviews=Review::all();
+    return view('Backend.main.reviews',compact('reviews'));
   }
 }

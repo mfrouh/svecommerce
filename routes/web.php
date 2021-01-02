@@ -35,6 +35,8 @@ Route::get('/orders/{id}/details', 'Backend\OrderController@order_details');
 Route::get('/tags', 'Backend\TagController@tags');
 Route::delete('/tags/{id}', 'Backend\TagController@deletetags');
 Route::get('/tags/{name}/products', 'Backend\TagController@product_tags');
+// reviews
+Route::get('/reviews', 'Backend\MainController@reviews');
 // dashboard
 Route::get('/dashboard', 'Backend\MainController@dashboard');
 // setting website

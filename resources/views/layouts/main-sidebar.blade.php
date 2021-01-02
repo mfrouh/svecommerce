@@ -136,6 +136,9 @@
                     </li>
                     <li class="slide">
 						<a class="side-menu__item" href="{{ url('/tags' ) }}"><span class="side-menu__label">كلمات لها علاقة</a>
+                    </li>
+                    <li class="slide">
+						<a class="side-menu__item" href="{{ url('/reviews' ) }}"><span class="side-menu__label">الأراء</a>
 					</li>
                     {{--  @endcan  --}}
 					{{--  @can('تعديل الموقع')  --}}
