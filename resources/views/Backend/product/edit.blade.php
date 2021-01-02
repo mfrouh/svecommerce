@@ -93,6 +93,10 @@
                     <small id="helpId" class="text-muted">{{$message}}</small>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label for="">صور المنتج</label>
+                    <input type="file" name="images[]" multiple accept="*/image">
+                </div>
                 <div class="form-group text-center">
                     <input type="submit" class="btn btn-primary" value="حفظ">
                 </div>

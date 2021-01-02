@@ -41,6 +41,7 @@
  								<th class="border-bottom-0">الصورة</th>
                                 <th class="border-bottom-0">الحالة</th>
                                 <th class="border-bottom-0">السعر</th>
+                                <th class="border-bottom-0">السعربعدالعرض</th>
                                 <th class="border-bottom-0">القسم</th>
                                 <th class="border-bottom-0">sku</th>
  								<th class="border-bottom-0">الصلاحيات</th>
@@ -59,6 +60,7 @@
                 </td>
                 <td>{{$product->getstatus()}}</td>
                 <td>{{$product->price}} جنية</td>
+                <td>{{$product->priceafteroffer}} جنية</td>
                 <td>{{$product->category->name}}</td>
                 <td>{{$product->sku}}</td>
  			   <td>

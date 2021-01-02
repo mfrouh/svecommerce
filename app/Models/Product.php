@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable=['category_id','name','description','price','status','slug','sku'];
-
+    protected $appends=['priceafteroffer'];
     public static function boot()
     {
         parent::boot();
@@ -45,5 +45,22 @@ class Product extends Model
     public function offer()
     {
         return $this->hasOne(Offer::class);
+    }
+    public function getPriceafterofferAttribute()
+    {
+       if ($this->offer && $this->offer->isactive) {
+         if ($this->offer->type=='fixed') {
+             if (($this->price - $this->offer->value)>0) {
+                return $this->price - $this->offer->value;
+             }
+             else {
+                return $this->price;
+             }
+         }
+         if ($this->offer->type=='variable') {
+            return $this->price - (($this->price*$this->offer->value)/100);
+         }
+       }
+       return $this->price;
     }
 }
