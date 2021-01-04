@@ -64,6 +64,11 @@
                 <td>{{$product->category->name}}</td>
                 <td>{{$product->sku}}</td>
  			   <td>
+                    @if ($product->attributes->count()>0)
+                    <a class="btn btn-warning btn-sm" href="/product/{{$product->id}}/attribute">تعديل الخصائص</a>
+                    @else
+                    <a class="btn btn-info btn-sm" href="/product/{{$product->id}}/attribute">اضافة الخصائص</a>
+                    @endif
                     @if ($product->offer)
                     <a class="btn btn-warning btn-sm" href="/offer/{{$product->offer->id}}/edit">تعديل عرض</a>
                     @else
