@@ -50,7 +50,7 @@
  						<tbody>
 						 @foreach ($products as $product)
  							<tr>
- 								<td>{{$product->name}}</td>
+ 				<td>{{$product->name}}</td>
                 <td>
                      @if ($product->image)
                        <img src="{{asset($product->image)}}" width="50px" height="50px" alt="">

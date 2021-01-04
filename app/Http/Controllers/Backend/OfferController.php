@@ -93,7 +93,7 @@ class OfferController extends Controller
             'type'=>'required|in:fixed,variable',
             'value'=>'required',
             'message'=>'nullable',
-            'start_offer'=>'required|before_or_equal:end_offer|after_or_equal:'.now(),
+            'start_offer'=>'required|before_or_equal:end_offer',
             'end_offer'=>'required|after_or_equal:start_offer'
         ]);
         $offer->update($request->all());

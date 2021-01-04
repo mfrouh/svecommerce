@@ -26,6 +26,11 @@ Route::resource('coupon', 'Backend\CouponController')->except(['show']);
 Route::resource('roles', 'Backend\RoleController');
 Route::resource('permissions', 'Backend\PermissionController');
 Route::resource('employee', 'Backend\AdminController');
+//attribute
+Route::get('product/{id}/attribute','Backend\AttributeController@attribute');
+Route::post('/attribute','Backend\AttributeController@storeattribute');
+Route::delete('/attribute/{id}','Backend\AttributeController@deleteattribute');
+// users
 // users
 Route::get('/users', 'Backend\AdminController@users');
 // orders

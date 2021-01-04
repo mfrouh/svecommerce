@@ -205,6 +205,12 @@
 					<div class="d-flex">
 						<div class="">
 							<h4 class="tx-20 font-weight-bold mb-1 text-white">{{$coupons}}</h4>
+                        </div>
+                        <div class="">
+							<h4 class="tx-20 font-weight-bold mb-1 mr-5 ml-5 text-dark">{{$actcoupons}}</h4>
+                        </div>
+                        <div class="">
+							<h4 class="tx-20 font-weight-bold mb-1 mr-5 text-danger">{{$inactcoupons}}</h4>
 						</div>
 					</div>
 				</div>
@@ -221,6 +227,12 @@
 					<div class="d-flex">
 						<div class="">
 							<h4 class="tx-20 font-weight-bold mb-1 text-white">{{$offers}}</h4>
+                        </div>
+                        <div class="">
+							<h4 class="tx-20 font-weight-bold mb-1 mr-5 ml-5 text-success">{{$actoffers}}</h4>
+                        </div>
+                        <div class="">
+							<h4 class="tx-20 font-weight-bold mb-1 mr-5 text-dark">{{$inactoffers}}</h4>
 						</div>
 					</div>
 				</div>
@@ -228,7 +240,164 @@
 		</div>
     </div>
 </div>
+<div class="row">
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">({{$categories}}) الاقسام</div>
+            <div class="card-body">
+                <canvas id="categories"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">({{$products}}) المنتجات</div>
+            <div class="card-body">
+                <canvas id="products"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">({{$offers}}) العروض</div>
+            <div class="card-body">
+                <canvas id="offers"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">({{$coupons}}) الخصومات</div>
+            <div class="card-body">
+                <canvas id="coupons"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
 
   </div>
 </div>
+@endsection
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+var ctx1 = document.getElementById('categories').getContext('2d');
+var ctx2 = document.getElementById('products').getContext('2d');
+var ctx3 = document.getElementById('offers').getContext('2d');
+var ctx4 = document.getElementById('coupons').getContext('2d');
+
+var chart1 = new Chart(ctx1, {
+    // The type of chart we want to create
+    type: 'pie',
+
+    // The data for our dataset
+    data: {
+        labels: ['الاقسام المغلقة', 'الاقسام المتاحة'],
+        datasets: [{
+            label: 'الاقسام',
+            backgroundColor:['red','green'],
+            borderColor: 'rgb(255, 255, 255)',
+            data: [{{$inactcategories}}, {{$actcategories}}]
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+        animation: {
+            duration:2000// general animation time
+        },
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                fontFamily:"'Lalezar', 'cursive'",
+                fontSize:15,
+            }
+        }
+    }
+});
+var chart2 = new Chart(ctx2, {
+    // The type of chart we want to create
+    type: 'pie',
+
+    // The data for our dataset
+    data: {
+        labels: ['المنتجات المغلقة', 'المنتجات المتاحة'],
+        datasets: [{
+            label: 'المنتجات',
+            backgroundColor:['red','green'],
+            borderColor: 'rgb(255, 255, 255)',
+            data: [{{$inactproducts}}, {{$actproducts}}]
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                fontFamily:"'Lalezar', 'cursive'",
+                fontSize:15,
+            }
+        }
+    }
+});
+var chart3 = new Chart(ctx3, {
+    // The type of chart we want to create
+    type: 'pie',
+
+    // The data for our dataset
+    data: {
+        labels: ['العروض المغلقة', 'العروض المتاحة'],
+        datasets: [{
+            label: 'العروض',
+            backgroundColor:['red','green'],
+            borderColor: 'rgb(255, 255, 255)',
+            data: [{{$inactoffers}}, {{$actoffers}}]
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                fontFamily:"'Lalezar', 'cursive'",
+                fontSize:15,
+            }
+        }
+    }
+});
+var chart4 = new Chart(ctx4, {
+    // The type of chart we want to create
+    type: 'pie',
+
+    // The data for our dataset
+    data: {
+        labels: ['الخصومات المغلقة', 'الخصومات المتاحة'],
+        datasets: [{
+            label: 'الخصومات',
+            backgroundColor:['red','green'],
+            borderColor: 'rgb(255, 255, 255)',
+            data: [{{$inactcoupons}}, {{$actcoupons}}]
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black',
+                fontFamily:"'Lalezar', 'cursive'",
+                fontSize:15,
+            }
+        }
+    }
+});
+
+</script>
+
 @endsection

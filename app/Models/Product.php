@@ -10,14 +10,18 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable=['category_id','name','description','price','status','slug','sku'];
+
     protected $appends=['priceafteroffer'];
+
     public static function boot()
     {
         parent::boot();
         static::saving(function ($model) {
             $model->slug = str_replace(' ','_',$model->name);
+            $model->sku = 'p'.$model->id;
         });
     }
+
     public function category()
     {
         return $this->belongsTo('App\Models\Category');
@@ -49,6 +53,10 @@ class Product extends Model
     public function variants()
     {
         return $this->belongsToMany('App\Models\Variant', 'product_variant', 'product_id', 'variant_id');
+    }
+    public function attributes()
+    {
+        return $this->hasMany('App\Models\Attribute');
     }
     public function getPriceafterofferAttribute()
     {

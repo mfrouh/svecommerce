@@ -39,4 +39,12 @@ class Coupon extends Model
     {
       return   $this->isactive==1?'متاح الان':'غير متاح الان';
     }
+    public function ScopeActive($q)
+    {
+       $q->where('start','<=', now())->where('end','>=',now());
+    }
+    public function ScopeInactive($q)
+    {
+       $q->OrWhere('start','>', now())->OrWhere('end','<',now());
+    }
 }

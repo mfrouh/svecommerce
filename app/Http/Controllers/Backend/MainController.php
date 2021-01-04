@@ -34,14 +34,20 @@ class MainController extends Controller
     $inactcategories=Category::inactive()->count();
     $orders=Order::count();
     $offers=Offer::count();
+    $actoffers=Offer::active()->count();
+    $inactoffers=Offer::inactive()->count();
     $coupons=Coupon::count();
+    $actcoupons=Coupon::active()->count();
+    $inactcoupons=Coupon::inactive()->count();
     return view('Backend.main.dashboard',
     compact('admins','users',
     'products','tags','roles',
     'permissions','categories',
     'actproducts','inactproducts',
     'actcategories','inactcategories',
-    'orders','offers','coupons'));
+    'orders',
+    'offers','actoffers','inactoffers',
+    'coupons','actcoupons','inactcoupons'));
   }
   public function reviews()
   {

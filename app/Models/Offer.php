@@ -34,4 +34,12 @@ class Offer extends Model
     {
       return   $this->isactive==1?'متاح الان':'غير متاح الان';
     }
+    public function ScopeActive($q)
+    {
+       $q->where('start_offer','<=', now())->where('end_offer','>=',now());
+    }
+    public function ScopeInactive($q)
+    {
+       $q->OrWhere('start_offer','>', now())->OrWhere('end_offer','<',now());
+    }
 }

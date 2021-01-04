@@ -50,14 +50,6 @@
                     <small id="helpId" class="text-muted">{{$message}}</small>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label for="">Sku</label>
-                    <input type="text" name="sku" class="form-control  @error('sku') is-invalid @enderror" value="{{old('sku')}}" placeholder="" >
-                    @error('sku')
-                    <small id="helpId" class="text-muted">{{$message}}</small>
-                    @enderror
-                </div>
-
  			</div>
  		</div>
      </div>

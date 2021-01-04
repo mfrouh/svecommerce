@@ -85,7 +85,7 @@ class CouponController extends Controller
     {
         $this->validate($request,[
            'code'=>'required|unique:coupons,code,'.$coupon->id,
-           'start'=>'required|before_or_equal:end|after_or_equal:'.now(),
+           'start'=>'required|before_or_equal:end',
            'end'=>'required|after_or_equal:start',
            'cand'=>'nullable|in:more,less else ',
            'cand_value'=>'required_with:cand|nullable|numeric',

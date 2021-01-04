@@ -45,12 +45,12 @@ class ProductController extends Controller
             'description'=>'required|min:50',
             'price'=>'required|numeric',
             'status'=>'required|in:active,inactive',
-            'sku'=>'nullable',
             'tags'=>'required',
             'images'=>'required',
             'images.*'=>'image',
         ]);
         $product= Product::create($request->all());
+        $product->update();
         $tags=explode(',',$request->tags);
         $Ttags=array();
         foreach ($tags as $key => $tag) {
@@ -59,8 +59,10 @@ class ProductController extends Controller
             $Ttags[]= $Ftag->id;
         }
         $product->tags()->sync($Ttags);
+        if ($request->images) {
         foreach ($request->images as $key => $image) {
             $product->gallery()->create(['url'=>sortimage("storage/products/p$product->id",$image)]);
+        }
         }
         return back()->with('success','تم انشاء المنتج بنجاح');
     }
@@ -102,8 +104,9 @@ class ProductController extends Controller
             'description'=>'required|min:50',
             'price'=>'required|numeric',
             'status'=>'required|in:active,inactive',
-            'sku'=>'nullable',
             'tags'=>'required',
+            'images'=>'nullable',
+            'images.*'=>'image',
         ]);
         $product->update($request->all());
         $tags=explode(',',$request->tags);
@@ -114,6 +117,11 @@ class ProductController extends Controller
             $Ttags[]= $Ftag->id;
         }
         $product->tags()->sync($Ttags);
+        if ($request->images) {
+        foreach ($request->images as $key => $image) {
+            $product->gallery()->create(['url'=>sortimage("storage/products/p$product->id",$image)]);
+        }
+        }
         return back()->with('success','تم تعديل المنتج بنجاح');
     }
 
