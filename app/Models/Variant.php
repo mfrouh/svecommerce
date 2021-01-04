@@ -10,7 +10,6 @@ class Variant extends Model
     use HasFactory;
 
     protected $fillable=['sku','price','quantity'];
-
     public function values()
     {
         return $this->belongsToMany('App\Models\Value', 'variant_value', 'variant_id', 'value_id');

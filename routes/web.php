@@ -29,7 +29,12 @@ Route::resource('employee', 'Backend\AdminController');
 //attribute
 Route::get('product/{id}/attribute','Backend\AttributeController@attribute');
 Route::post('/attribute','Backend\AttributeController@storeattribute');
+Route::post('/value','Backend\AttributeController@storevalue');
+Route::post('/variant','Backend\AttributeController@storevariant');
 Route::delete('/attribute/{id}','Backend\AttributeController@deleteattribute');
+Route::delete('/value/{id}','Backend\AttributeController@deletevalue');
+Route::delete('/variant/{id}','Backend\AttributeController@deletevariant');
+
 // users
 // users
 Route::get('/users', 'Backend\AdminController@users');
