@@ -4,6 +4,14 @@
 @endsection
 @section('css')
 <link href="{{URL::asset('assets/plugins/inputtags/inputtags.css')}}" rel="stylesheet">
+<style>
+    .delete-image{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    border-radius: 5px;
+    }
+</style>
 @endsection
 @section('page-header')
   <!-- breadcrumb -->
@@ -39,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">وصف المنتج</label>
-                    <textarea name="description"  class="form-control  @error('description') is-invalid @enderror"  rows="4">{{$product->description}}</textarea>
+                    <textarea name="description" id="editor"  class="form-control  @error('description') is-invalid @enderror"  rows="4">{{$product->description}}</textarea>
                     @error('description')
                     <small id="helpId" class="text-muted">{{$message}}</small>
                     @enderror
@@ -97,9 +105,44 @@
      </div>
  </div>
 </form>
-</div>
+<div class="row">
+   <div class="col-xl-12">
+   <div class="card mg-b-20">
+   	  <div class="card-header pb-0">
+   	  	<div class="d-flex justify-content-between">
+   	  		<h4 class="card-title mg-b-0">صور منتج</h4>
+   	  	</div>
+   	  </div>
+      <div class="card-body row">
+            @foreach ($product->gallery as $image)
+               <div class="col-md-3">
+                <img src="{{asset($image->url)}}" class="m-3" height="150" width="150">
+                 <a href="/image/{{$image->id}}" class="delete-image btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+               </div>
+            @endforeach
+      </div>
+    </div>
+   </div>
 </div>
 @endsection
 @section('js')
 <script src="{{URL::asset('assets/plugins/inputtags/inputtags.js')}}"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ),{
+        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        language: 'ar',
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+            ]
+        }
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+ </script>
 @endsection

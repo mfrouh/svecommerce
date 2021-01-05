@@ -26,6 +26,12 @@ Route::resource('coupon', 'Backend\CouponController')->except(['show']);
 Route::resource('roles', 'Backend\RoleController');
 Route::resource('permissions', 'Backend\PermissionController');
 Route::resource('employee', 'Backend\AdminController');
+//active && inactive cagtegory
+Route::post('/category/active','Backend\CategoryController@active');
+Route::post('/category/inactive','Backend\CategoryController@inactive');
+//active && inactive cagtegory
+Route::post('/product/active','Backend\ProductController@active');
+Route::post('/product/inactive','Backend\ProductController@inactive');
 //attribute
 Route::get('product/{id}/attribute','Backend\AttributeController@attribute');
 Route::post('/attribute','Backend\AttributeController@storeattribute');
@@ -34,8 +40,6 @@ Route::post('/variant','Backend\AttributeController@storevariant');
 Route::delete('/attribute/{id}','Backend\AttributeController@deleteattribute');
 Route::delete('/value/{id}','Backend\AttributeController@deletevalue');
 Route::delete('/variant/{id}','Backend\AttributeController@deletevariant');
-
-// users
 // users
 Route::get('/users', 'Backend\AdminController@users');
 // orders
@@ -49,6 +53,8 @@ Route::get('/tags/{name}/products', 'Backend\TagController@product_tags');
 Route::get('/reviews', 'Backend\MainController@reviews');
 // dashboard
 Route::get('/dashboard', 'Backend\MainController@dashboard');
+// image
+Route::get('/image/{id}', 'Backend\MainController@image');
 // setting website
 Route::get('/setting','Backend\SettingController@index');
 Route::post('/setting','Backend\SettingController@setting');

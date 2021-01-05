@@ -32,7 +32,24 @@ class ProductController extends Controller
         $categories=Category::all();
         return view('Backend.product.create',compact('categories'));
     }
-
+    public function active(Request $request)
+    {
+        $this->validate($request,[
+            'id'=>"required",
+        ]);
+        $product=Product::findorfail($request->id);
+        $product->update(['status'=>'active']);
+        return back()->with('success','تم تفعيل المنتج بنجاح');
+    }
+    public function inactive(Request $request)
+    {
+        $this->validate($request,[
+            'id'=>"required",
+        ]);
+        $product=Product::findorfail($request->id);
+        $product->update(['status'=>'inactive']);
+        return back()->with('success','تم تعطيل المنتج بنجاح');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -134,6 +151,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $product->tags()->delete();
+        $product->gallery()->delete();
         Storage::deleteDirectory('public/products/p'.$product->id);
         $product->delete();
         return back()->with('success','تم حذف المنتج بنجاح');

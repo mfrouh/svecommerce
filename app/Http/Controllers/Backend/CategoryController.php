@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -33,6 +34,24 @@ class CategoryController extends Controller
     {
         return view('Backend.category.create');
     }
+    public function active(Request $request)
+    {
+        $this->validate($request,[
+            'id'=>"required",
+        ]);
+        $category=Category::findorfail($request->id);
+        $category->update(['status'=>'active']);
+        return back()->with('success','تم تفعيل القسم بنجاح');
+    }
+    public function inactive(Request $request)
+    {
+        $this->validate($request,[
+            'id'=>"required",
+        ]);
+        $category=Category::findorfail($request->id);
+        $category->update(['status'=>'inactive']);
+        return back()->with('success','تم تعطيل القسم بنجاح');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -61,7 +80,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('Backend.category.show',compact('category'));
+        $products=Product::where('category_id',$category->id)->get();
+        return view('Backend.category.show',compact('category','products'));
     }
 
     /**

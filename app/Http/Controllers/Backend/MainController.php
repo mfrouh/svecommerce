@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Coupon;
+use App\Models\Image;
 use App\Models\Offer;
 use App\Models\Order;
 use App\Models\Product;
@@ -13,6 +14,7 @@ use App\Models\Review;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -53,5 +55,13 @@ class MainController extends Controller
   {
     $reviews=Review::all();
     return view('Backend.main.reviews',compact('reviews'));
+  }
+  public function image($id)
+  {
+    $image=Image::findorfail($id);
+    $path=str_replace('storage/','public/',$image->url);
+    Storage::delete($path);
+    $image->delete();
+    return back()->with('success','تم حذف الصورة بنجاح');
   }
 }
