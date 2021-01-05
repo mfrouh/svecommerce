@@ -52,7 +52,7 @@ class Product extends Model
     }
     public function variants()
     {
-        return $this->belongsToMany('App\Models\Variant', 'product_variant', 'product_id', 'variant_id');
+        return $this->hasMany('App\Models\Variant');
     }
     public function attributes()
     {

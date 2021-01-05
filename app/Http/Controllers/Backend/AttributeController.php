@@ -50,7 +50,7 @@ class AttributeController extends Controller
         $sku='p'.$product->id.$vari;
         $isvari=Variant::where('sku',$sku)->first();
         if (!$isvari) {
-        $variant= $product->variants()->create(["sku"=>$sku,'price'=>$request->price,'quantity'=>$request->quantity]);
+        $variant= Variant::create(["product_id"=>$request->product_id,"sku"=>$sku,'price'=>$request->price,'quantity'=>$request->quantity]);
         $variant->values()->sync($values);
         return response()->json('success');
         }
