@@ -77,7 +77,7 @@
           <div class="card-body text-center">
         <table class="table">
             <thead>
-                @foreach ($product->attributes as $attribute)
+                @foreach ($product->attributes->sortBy('id') as $attribute)
                  <th>{{$attribute->name}}</th>
                 @endforeach
                 <th>السعر</th>
@@ -88,7 +88,7 @@
             <tbody>
                 <tr>
                     <form action="" id="form">
-                    @foreach ($product->attributes as $attribute)
+                    @foreach ($product->attributes->sortBy('id') as $attribute)
                      <td>
                        <select  id="{{$attribute->id}}" name="{{$attribute->id}}" class="form-control">
                           @foreach ($attribute->values as $value)

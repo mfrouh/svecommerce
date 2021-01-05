@@ -11,7 +11,7 @@ class Product extends Model
 
     protected $fillable=['category_id','name','description','price','status','slug','sku'];
 
-    protected $appends=['priceafteroffer'];
+    protected $appends=['priceafteroffer','variantprice','variantpriceafteroffer'];
 
     public static function boot()
     {
@@ -74,5 +74,23 @@ class Product extends Model
          }
        }
        return $this->price;
+    }
+    public function getvariantpriceAttribute()
+    {
+        $min=min($this->variants->pluck('price')->toArray());
+        $max=max($this->variants->pluck('price')->toArray());
+        if ($min==$max) {
+         return $min;
+      }
+      return '('.$min.','.$max.')';
+    }
+    public function  getvariantpriceafterofferAttribute()
+    {
+      $min=min($this->variants->pluck('priceafteroffer')->toArray());
+      $max=max($this->variants->pluck('priceafteroffer')->toArray());
+      if ($min==$max) {
+        return $min;
+       }
+      return '('.$min.','.$max.')';
     }
 }

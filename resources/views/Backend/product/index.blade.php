@@ -59,8 +59,13 @@
                      @endif
                 </td>
                 <td>{{$product->getstatus()}}</td>
+                @if ($product->variants->count() > 0)
+                <td>{{$product->variantprice}} جنية</td>
+                <td>{{$product->variantpriceafteroffer}} جنية</td>
+                @else
                 <td>{{$product->price}} جنية</td>
                 <td>{{$product->priceafteroffer}} جنية</td>
+                @endif
                 <td>{{$product->category->name}}</td>
                 <td>{{$product->sku}}</td>
  			   <td>
