@@ -81,6 +81,7 @@
                  <th>{{$attribute->name}}</th>
                 @endforeach
                 <th>السعر</th>
+                <th> السعر بعد العرض</th>
                 <th>الكمية</th>
                 <th>الصلاحيات</th>
             </thead>
@@ -97,6 +98,7 @@
                      </td>
                     @endforeach
                     <td><input type="text" class="form-control" name="price" id="price"></td>
+                    <td></td>
                     <td><input type="number" class="form-control" name="quantity" id="quantity"></td>
                     <input type="hidden" class="form-control" name="product_id" id="product_id" value="{{$product->id}}" >
                     <td> <a href="javascript:void(0)" class="addvariant btn btn-pink btn-sm p-2 m-2">اضافة</a></td>
@@ -107,7 +109,8 @@
                    @foreach ($variant->values as $value)
                     <td>{{$value->value}}</td>
                    @endforeach
-                   <td>{{$variant->price}}</td>
+                   <td>{{$variant->price}} جنية</td>
+                   <td>{{$variant->priceafteroffer}} جنية</td>
                    <td>{{$variant->quantity}}</td>
                    <td><a href="javascript:void(0)" data-id="{{$variant->id}}" class="deletevariant btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                 </tr>
@@ -178,7 +181,7 @@ $.ajaxSetup({
             dataType: "json",
             success: function (response) {
                 $('.value').val('');
-              //  location.reload();
+                location.reload();
             }
         });
      });

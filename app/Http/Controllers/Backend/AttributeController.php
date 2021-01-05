@@ -60,6 +60,8 @@ class AttributeController extends Controller
    }
    public function deletevalue($id)
    {
+
+     Value::findorfail($id)->variants()->delete();
      Value::findorfail($id)->delete();
      return response()->json('deleted');
    }
