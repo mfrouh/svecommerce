@@ -90,7 +90,11 @@ class CategoryController extends Controller
             'image'=>'image|nullable',
         ]);
         $image=$category->image;
-        if ($request->image) { $image=sortimage('storage/categories',$request->image);}
+        if ($request->image) {
+            $path=str_replace('storage/','public/',$category->image);
+            Storage::delete($path);
+            $image=sortimage('storage/categories',$request->image);
+        }
         $category->update(['name'=>$request->name,'status'=>$request->status,'image'=>$image]);
         return back()->with('success','تم تعديل القسم بنجاح');
     }
@@ -103,7 +107,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        Storage::delete(["storage/categories",$category->image]);
+        $path=str_replace('storage/','public/',$category->image);
+        Storage::delete($path);
         $category->delete();
         return back()->with('success','تم حذف القسم بنجاح');
     }

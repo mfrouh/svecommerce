@@ -14,8 +14,10 @@ class Variant extends Model
     {
         return $this->belongsToMany('App\Models\Value', 'variant_value', 'variant_id', 'value_id');
     }
-    public function products()
+    public function product()
     {
-        return $this->belongsToMany('App\Models\Product', 'product_variant', 'variant_id', 'product_id');
+        return $this->belongsTo('App\Models\Product', 'product_variant', 'variant_id', 'product_id');
     }
+
+
 }
