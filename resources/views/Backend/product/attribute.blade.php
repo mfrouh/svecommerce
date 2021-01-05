@@ -106,7 +106,7 @@
                  </tr>
                 @foreach ($product->variants as $variant)
                 <tr>
-                   @foreach ($variant->values as $value)
+                   @foreach ($variant->values->sortBy('attribute_id') as $value)
                     <td>{{$value->value}}</td>
                    @endforeach
                    <td>{{$variant->price}} جنية</td>
