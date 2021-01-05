@@ -18,6 +18,8 @@ class CreateProductsTable extends Migration
             $table->foreignId('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name');
+            $table->string('image');
+            $table->string('video_url')->nullable();
             $table->text('description');
             $table->enum('status',['active','inactive'])->default('inactive');
             $table->string('slug');

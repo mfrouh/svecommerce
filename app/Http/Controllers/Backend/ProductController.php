@@ -65,6 +65,8 @@ class ProductController extends Controller
             'status'=>'required|in:active,inactive',
             'tags'=>'required',
             'images'=>'required',
+            'image'=>'image|required',
+            'video_url'=>'nullable|url',
             'images.*'=>'image',
         ]);
         $product= Product::create($request->all());
@@ -123,9 +125,15 @@ class ProductController extends Controller
             'price'=>'required|numeric',
             'status'=>'required|in:active,inactive',
             'tags'=>'required',
+            'image'=>'image|nullable',
+            'video_url'=>'nullable|url',
             'images'=>'nullable',
             'images.*'=>'image',
         ]);
+        if ($request->image) {
+            $path=str_replace('storage/','public/',$product->image);
+            Storage::delete($path);
+        }
         $product->update($request->all());
         $tags=explode(',',$request->tags);
         $Ttags=array();
@@ -153,6 +161,8 @@ class ProductController extends Controller
     {
         $product->tags()->delete();
         $product->gallery()->delete();
+        $path=str_replace('storage/','public/',$product->image);
+        Storage::delete($path);
         Storage::deleteDirectory('public/products/p'.$product->id);
         $product->delete();
         return back()->with('success','تم حذف المنتج بنجاح');

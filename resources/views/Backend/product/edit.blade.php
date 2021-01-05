@@ -97,6 +97,14 @@
                     <label for="">صور المنتج</label>
                     <input type="file" name="images[]" multiple accept="*/image">
                 </div>
+                <div class="form-group">
+                    <label for="">صورة المنتج</label>
+                    <input type="file" name="image" accept="*/image">
+                </div>
+                 <div class="form-group">
+                    <label for="">فيديو للمنتج</label>
+                    <input type="text" name="video_url" class="form-control" value="{{$product->video_url}}" >
+                </div>
                 <div class="form-group text-center">
                     <input type="submit" class="btn btn-primary" value="حفظ">
                 </div>

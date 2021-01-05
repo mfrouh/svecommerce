@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable=['category_id','name','description','price','status','slug','sku'];
+    protected $fillable=['category_id','name','description','price','status','slug','sku','image','video_url'];
 
     protected $appends=['priceafteroffer','variantprice','variantpriceafteroffer'];
 
@@ -49,6 +50,10 @@ class Product extends Model
     public function offer()
     {
         return $this->hasOne(Offer::class);
+    }
+    public function setImageAttribute($value)
+    {
+        $this->attributes['image'] =sortimage('storage/products/main/',$value);
     }
     public function variants()
     {

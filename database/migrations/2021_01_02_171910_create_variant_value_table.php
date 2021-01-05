@@ -20,7 +20,6 @@ class CreateVariantValueTable extends Migration
             $table->foreignId('variant_id');
             $table->foreign('variant_id')->references('id')->on('variants')->onDelete('cascade')->onUpdate('cascade');
             $table->unique(['variant_id','value_id']);
-            $table->timestamps();
         });
     }
 
