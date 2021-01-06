@@ -50,6 +50,13 @@
                     <small id="helpId" class="text-muted">{{$message}}</small>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label for="">كمية المنتج</label>
+                    <input type="number" name="quantity" class="form-control  @error('quantity') is-invalid @enderror" value="{{old('quantity')}}" placeholder="" >
+                    @error('quantity')
+                    <small id="helpId" class="text-muted">{{$message}}</small>
+                    @enderror
+                </div>
  			</div>
  		</div>
      </div>
@@ -90,7 +97,7 @@
                 </div>
                  <div class="form-group">
                     <label for="">فيديو للمنتج</label>
-                    <input type="text" name="video_url" class="form-control" >
+                    <input type="text" name="video_url" class="form-control" value="{{old('video_url')}}" >
                 </div>
                 <div class="form-group">
                     <label for="">صور المنتج</label>

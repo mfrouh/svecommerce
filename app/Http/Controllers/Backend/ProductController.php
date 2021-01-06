@@ -68,6 +68,7 @@ class ProductController extends Controller
             'image'=>'image|required',
             'video_url'=>'nullable|url',
             'images.*'=>'image',
+            'quantity'=>'required|numeric',
         ]);
         $product= Product::create($request->all());
         $product->update();
@@ -129,6 +130,7 @@ class ProductController extends Controller
             'video_url'=>'nullable|url',
             'images'=>'nullable',
             'images.*'=>'image',
+            'quantity'=>'required|numeric'
         ]);
         if ($request->image) {
             $path=str_replace('storage/','public/',$product->image);

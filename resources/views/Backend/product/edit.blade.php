@@ -59,6 +59,13 @@
                     <small id="helpId" class="text-muted">{{$message}}</small>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label for="">كمية المنتج</label>
+                    <input type="number" name="quantity" class="form-control  @error('quantity') is-invalid @enderror" value="{{$product->quantity}}" placeholder="" >
+                    @error('quantity')
+                    <small id="helpId" class="text-muted">{{$message}}</small>
+                    @enderror
+                </div>
  			</div>
  		</div>
      </div>

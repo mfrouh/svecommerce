@@ -133,15 +133,15 @@ $.ajaxSetup({
      $('#addattribute').click(function()
      {
         var product_id=$('#product_id').val();
-        var attribute=$('#attribute').val();
+        var name=$('#attribute').val();
         $.ajax({
             type: "post",
             url: "/attribute",
-            data: {product_id:product_id,attribute:attribute},
+            data: {product_id:product_id,name:name},
             dataType: "json",
             success: function (response) {
                 $('#attribute').val('');
-                location.reload();
+               location.reload();
             }
         });
      });

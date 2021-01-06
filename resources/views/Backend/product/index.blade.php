@@ -43,6 +43,7 @@
                                 <th class="border-bottom-0">السعر</th>
                                 <th class="border-bottom-0">السعربعدالعرض</th>
                                 <th class="border-bottom-0">القسم</th>
+                                <th class="border-bottom-0">الكمية</th>
                                 <th class="border-bottom-0">sku</th>
  								<th class="border-bottom-0">الصلاحيات</th>
  							</tr>
@@ -67,6 +68,7 @@
                 <td>{{$product->priceafteroffer}} جنية</td>
                 @endif
                 <td>{{$product->category->name}}</td>
+                <td>{{$product->quantity}}</td>
                 <td>{{$product->sku}}</td>
  			   <td>
                     @if ($product->attributes->count()>0)

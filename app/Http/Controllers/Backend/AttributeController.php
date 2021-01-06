@@ -18,8 +18,13 @@ class AttributeController extends Controller
    }
    public function storeattribute(Request $request)
    {
+    $this->validate($request,
+    [
+      'name' => 'required|unique:attributes,name,NULL,id,product_id,'.$request->product_id,
+      'product_id'=>'required|numeric',
+    ]) ;
      $product=Product::findOrfail($request->product_id);
-     $product->attributes()->updateOrcreate(['name'=>$request->attribute]);
+     $product->attributes()->updateOrcreate(['name'=>$request->name]);
      return response()->json('success');
    }
    public function deleteattribute($id)
@@ -29,6 +34,11 @@ class AttributeController extends Controller
    }
    public function storevalue(Request $request)
    {
+    $this->validate($request,
+    [
+      'value' => 'required|unique:values,value,NULL,id,attribute_id,'.$request->attribute_id,
+      'attribute_id'=>'required|numeric',
+    ]) ;
      $attribute=Attribute::findOrfail($request->attribute_id);
      $attribute->values()->updateOrcreate(['value'=>$request->value]);
      return response()->json('success');
